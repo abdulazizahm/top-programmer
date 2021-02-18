@@ -1,0 +1,29 @@
+@extends('layouts.app')
+@section('title')
+    {{$user->name}}
+@endsection
+@section('content')
+    <div class="container">
+        <div class="owner">
+            <div class="avatar" style="margin-top: 120px">
+                <img src="/frontend/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+            </div>
+            <div class="name">
+                <h4 class="title">{{$user->name}}
+                    <br>
+                </h4>
+                <h6 class="description">{{$user->email}}</h6>
+            </div>
+        </div>
+        @if(auth()->user()&&$user->id==auth()->user()->id)
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                    <p></p>
+                    <br>
+                    <btn onclick="$('#update').slideToggle();" class="btn btn-outline-default btn-round" ><i class="fa fa-cog"></i>Update profile</btn>
+                </div>
+            </div><br><br>
+            @include('front-end.profile.edit')
+        @endif
+    </div>
+@endsection
